@@ -1,5 +1,5 @@
 # poster-finder
-Download All Poster of Movie with URL From [IMPAwards](https://www.google.com)
+Download All Poster of Movie with URL From [IMPAwards](http://www.impawards.com)
 
 
 ## Package Requirement
@@ -17,7 +17,7 @@ Download All Poster of Movie with URL From [IMPAwards](https://www.google.com)
 
 ## Tip
 
-> If you can't open [IMPAwards](https://www.google.com) you should use proxy to change your IP 😀
+> If you can't open [IMPAwards](http://www.impawards.com) you should use proxy to change your IP 😀
 
 > I Love To Share This Repo With Your Friend Or Fork It 😍
 
