@@ -6,8 +6,11 @@ from bs4 import BeautifulSoup
 import urllib.request as req
 import requests
 import re
+import platform
+import time
 
 BASE_URL = 'http://www.impawards.com/'
+OS_NAME = platform.system()
 
 def findTitle( url ):
     result = url.replace( BASE_URL , '')
@@ -19,6 +22,7 @@ def findTitle( url ):
 def generateImageUrl( url ):
     pattern = re.compile("^([0-9]{4})")
     rawUrl = url.replace( BASE_URL , '')
+    rawUrl = rawUrl.replace( '_ver1' , '')
     rawUrl = rawUrl.replace('.html', '')
     parts = rawUrl.split('/')
     finalUrl = BASE_URL[:-1];
@@ -61,11 +65,17 @@ def init():
                 for i in range(0, _COUNT_):
                     if( i == 0 ):
                         SavedName = _TITLE_.title() + ' Poster ' + str(i)
-                        downloadImageFile( targetImageUrl, SavedName )
+                        downloadImageFile( targetImageUrl + '_ver' + str(i+1), SavedName )
                     else:
                         SavedName = _TITLE_.title() + ' Poster ' + str(i).zfill(2)
                         downloadImageFile( targetImageUrl + '_ver' + str(i+1), SavedName )
-                    print('Poster Number %d Saved' % i )
+
+                    // Print Loading In Single Line in Linux OS
+                    if( OS_NAME != 'Windows' ):
+                        print(f'Poster Number {i+1}/{ _COUNT_ } Saved!', flush=True, end='\r')
+                    else:
+                        print(f'Poster Number {i+1}/{ _COUNT_ } Saved!\n', flush=True, end='')
+                    time.sleep(0.5) 
                 print('\n')
             else:
                 print('\n')
