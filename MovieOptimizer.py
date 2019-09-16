@@ -11,6 +11,7 @@ import time
 
 BASE_URL = 'http://www.impawards.com/'
 OS_NAME = platform.system()
+IS_SINGLE = False
 
 def findTitle( url ):
     result = url.replace( BASE_URL , '')
@@ -35,9 +36,19 @@ def generateImageUrl( url ):
     return finalUrl
 
 def findImageList( url ):
+    global IS_SINGLE
     _PAGE_ = requests.get( url )
     _SOUP_ = BeautifulSoup( _PAGE_.content, 'html.parser' )
-    return len( _SOUP_.find_all(id='altdesigns')[0].contents )
+
+    #Check Empty List
+    if ( _SOUP_.find_all(id='altdesigns') ):
+        _TOTAL_SIZE_ = len( _SOUP_.find_all(id='altdesigns')[0].contents )
+        IS_SINGLE = False
+    else:
+        _TOTAL_SIZE_ = 1
+        IS_SINGLE = True
+
+    return _TOTAL_SIZE_
 
 def downloadImageFile( imageUrl, targetName ):
     req.urlretrieve( imageUrl+'.jpg', targetName+'.jpg')
@@ -63,9 +74,13 @@ def init():
 
                 targetImageUrl = generateImageUrl( _TARGET_ )
                 for i in range(0, _COUNT_):
-                    if( i == 0 ):
+                    #Check Posters Item
+                    if( i == 0 and not IS_SINGLE ):
                         SavedName = _TITLE_.title() + ' Poster ' + str(i)
                         downloadImageFile( targetImageUrl + '_ver' + str(i+1), SavedName )
+                    elif( i == 0 and IS_SINGLE ):
+                        SavedName = _TITLE_.title() + ' Poster ' + str(i)
+                        downloadImageFile( targetImageUrl, SavedName )
                     else:
                         SavedName = _TITLE_.title() + ' Poster ' + str(i).zfill(2)
                         downloadImageFile( targetImageUrl + '_ver' + str(i+1), SavedName )
