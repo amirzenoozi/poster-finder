@@ -70,7 +70,7 @@ def init():
                         SavedName = _TITLE_.title() + ' Poster ' + str(i).zfill(2)
                         downloadImageFile( targetImageUrl + '_ver' + str(i+1), SavedName )
 
-                    // Print Loading In Single Line in Linux OS
+                    #Print Loading In Single Line in Linux OS
                     if( OS_NAME != 'Windows' ):
                         print(f'Poster Number {i+1}/{ _COUNT_ } Saved!', flush=True, end='\r')
                     else:
