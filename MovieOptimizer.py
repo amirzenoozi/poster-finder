@@ -3,6 +3,7 @@ __license__ = "MIT"
 __version__ = "1.5"
 
 from bs4 import BeautifulSoup
+import urllib
 import urllib.request as req
 import requests
 import re
@@ -51,8 +52,16 @@ def findImageList( url ):
     return _TOTAL_SIZE_
 
 def downloadImageFile( imageUrl, targetName ):
-    req.urlretrieve( imageUrl+'.jpg', targetName+'.jpg')
-    return True;
+    try:
+        req.urlretrieve( imageUrl+'.jpg', targetName+'.jpg')
+    except urllib.error.HTTPError as err:
+        print('\n')
+        print('========================')
+        print(f'Error Code: {err.getcode()}')
+        print(f'Target URL: {imageUrl}.jpg' )
+        print('========================')
+        print('\n')
+    return True
 
 def checkUrlFormat( url ):
     pattern = re.compile('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\), ]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')

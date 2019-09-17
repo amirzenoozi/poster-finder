@@ -5,7 +5,7 @@ Download All Poster of Movie with URL From [IMPAwards](http://www.impawards.com)
 ## Package Requirement
 + Bs4: Web Scrapper Library
 + Requests: Work With URL's Library
-+ Re: Rejax Library
++ Re: Rejex Library
 + Urllib3: Download Image And Save it
 
 
@@ -18,6 +18,4 @@ Download All Poster of Movie with URL From [IMPAwards](http://www.impawards.com)
 ## Tip
 
 > If you can't open [IMPAwards](http://www.impawards.com) you should use proxy to change your IP 😀
-
 > I Love To Share This Repo With Your Friend Or Fork It 😍
-
