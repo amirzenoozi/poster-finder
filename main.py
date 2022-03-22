@@ -96,9 +96,9 @@ def init():
 
                     #Print Loading In Single Line in Linux OS
                     if( OS_NAME != 'Windows' ):
-                        print(f'Poster Number {i+1}/{ _COUNT_ } Saved!', flush=True, end='\r')
+                        print(f'Poster Number {str(i+1).zfill(2)}/{ _COUNT_ } Saved!', flush=True, end='\r')
                     else:
-                        print(f'Poster Number {i+1}/{ _COUNT_ } Saved!\n', flush=True, end='')
+                        print(f'Poster Number {str(i+1).zfill(2)}/{ _COUNT_ } Saved!\n', flush=True, end='')
                     time.sleep(0.5) 
                 print('\n')
             else:
